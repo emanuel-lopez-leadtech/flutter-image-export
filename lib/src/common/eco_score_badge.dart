@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class EcoScoreBadge extends StatelessWidget {
   const EcoScoreBadge({super.key});
 
+  static final images = ['assets/bg.jpg'];
+
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(

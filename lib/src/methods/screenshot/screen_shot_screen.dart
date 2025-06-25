@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:image_export/src/eco_score_badge.dart';
-import 'package:image_export/src/export_image_mixin.dart';
+import 'package:image_export/src/common/eco_score_badge.dart';
+import 'package:image_export/src/common/export_image_mixin.dart';
 import 'package:screenshot/screenshot.dart';
 
 class ScreenShotScreen extends StatelessWidget with ExportImageMixin {
