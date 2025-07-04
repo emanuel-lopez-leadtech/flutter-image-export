@@ -6,6 +6,10 @@ A small POC to try Flutter packages for exporting widgets as images
 
 <img src="extras/image_export.jpeg"/>
 
+## Certificate generated as PDF
+
+Download <a href="extras/certificate.pdf"/>certificate.pdf</a>
+
 ## Performance comparison
 
 <img src="extras/performance_comparison.jpg"/>
