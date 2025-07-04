@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_export/src/methods/canvas/canvas_screen.dart';
-import 'package:image_export/src/performance_comparison_screen.dart';
+import 'package:image_export/src/methods/pdf/pdf_screen.dart';
+import 'package:image_export/src/comparison/performance_comparison_screen.dart';
 import 'package:image_export/src/methods/render_repaint_boundary/render_repaint_boundary_screen.dart';
 import 'package:image_export/src/methods/screenshot/screen_shot_screen.dart';
 
@@ -32,6 +33,11 @@ class HomeScreen extends StatelessWidget {
             subtitle: Text('Uses RenderRepaintBoundary'),
             onTap: () =>
                 _navigateTo(context, screen: RenderRepaintBoundaryScreen()),
+          ),
+          ListTile(
+            title: Text('Pdf'),
+            subtitle: Text('Creates a PDF certificate'),
+            onTap: () => _navigateTo(context, screen: PdfScreen()),
           ),
           ListTile(
             title: Text('PerformanceComparisonScreen'),
