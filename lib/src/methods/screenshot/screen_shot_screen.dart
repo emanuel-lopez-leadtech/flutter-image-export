@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:image_export/src/common/eco_score_badge.dart';
-import 'package:image_export/src/common/export_image_mixin.dart';
+import 'package:image_export/src/common/export_certificate_mixin.dart';
 import 'package:screenshot/screenshot.dart';
 
-class ScreenShotScreen extends StatelessWidget with ExportImageMixin {
+class ScreenShotScreen extends StatelessWidget with ExportCertificateMixin {
   ScreenShotScreen({super.key});
 
   final controller = ScreenshotController();
@@ -19,10 +19,10 @@ class ScreenShotScreen extends StatelessWidget with ExportImageMixin {
             //const EcoScoreBadge(),
             ElevatedButton(
               onPressed: () async {
-                final image = await controller.captureFromWidget(
+                final bytes = await controller.captureFromWidget(
                   EcoScoreBadge(),
                 );
-                exportImage(image);
+                export(bytes: bytes, format: 'png');
               },
               child: Text('Generate'),
             ),

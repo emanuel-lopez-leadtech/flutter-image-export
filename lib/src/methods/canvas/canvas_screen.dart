@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_export/src/methods/canvas/canvas_image_generator.dart';
-import 'package:image_export/src/common/export_image_mixin.dart';
+import 'package:image_export/src/common/export_certificate_mixin.dart';
 
 class CanvasScreen extends StatefulWidget {
   const CanvasScreen({super.key});
@@ -12,7 +12,8 @@ class CanvasScreen extends StatefulWidget {
   State<CanvasScreen> createState() => _CanvasScreenState();
 }
 
-class _CanvasScreenState extends State<CanvasScreen> with ExportImageMixin {
+class _CanvasScreenState extends State<CanvasScreen>
+    with ExportCertificateMixin {
   Uint8List? _pngBytes;
 
   @override
@@ -34,7 +35,7 @@ class _CanvasScreenState extends State<CanvasScreen> with ExportImageMixin {
                 debugPrint(
                   'FlutterCanvas: ${stopwatch.elapsedMilliseconds} ms',
                 );
-                exportImage(_pngBytes);
+                export(bytes: _pngBytes, format: 'png');
                 // setState(() {});
               },
               child: Text('Generate'),

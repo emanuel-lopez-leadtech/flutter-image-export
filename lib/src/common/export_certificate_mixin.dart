@@ -5,13 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-mixin ExportImageMixin {
-  void exportImage(Uint8List? bytes) async {
+mixin ExportCertificateMixin {
+  void export({required Uint8List? bytes, required String format}) async {
     try {
       if (bytes == null) return;
 
       final directory = await getTemporaryDirectory();
-      final file = File('${directory.path}/widget_image.png');
+      final file = File('${directory.path}/certificate.$format');
       await file.writeAsBytes(bytes);
 
       await Share.shareXFiles([

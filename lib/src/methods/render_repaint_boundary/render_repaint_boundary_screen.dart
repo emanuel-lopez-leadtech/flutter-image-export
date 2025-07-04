@@ -2,11 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:image_export/src/common/eco_score_badge.dart';
-import 'package:image_export/src/common/export_image_mixin.dart';
+import 'package:image_export/src/common/export_certificate_mixin.dart';
 import 'package:image_export/src/methods/render_repaint_boundary/image_generator.dart';
 
 class RenderRepaintBoundaryScreen extends StatelessWidget
-    with ExportImageMixin {
+    with ExportCertificateMixin {
   const RenderRepaintBoundaryScreen({super.key});
 
   @override
@@ -34,7 +34,7 @@ class RenderRepaintBoundaryScreen extends StatelessWidget
                 debugPrint(
                   'RenderRepaintBoundary: ${stopwatch.elapsedMilliseconds} ms',
                 );
-                exportImage(bytes);
+                export(bytes: bytes, format: 'png');
               },
               child: Text('Generate'),
             ),
