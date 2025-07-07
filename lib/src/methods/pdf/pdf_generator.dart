@@ -2,18 +2,58 @@ import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
+abstract class BackgroundImage {
+  String get path;
+
+  Future<void> loadImage();
+
+  pw.Widget buildBackground();
+}
+
+class JpgBackgroundImage extends BackgroundImage {
+  late final ByteData _backgoundImage;
+
+  @override
+  String get path => 'assets/bg.jpg';
+
+  @override
+  Future<void> loadImage() async {
+    _backgoundImage = await rootBundle.load('assets/bg.jpg');
+  }
+
+  @override
+  pw.Widget buildBackground() => pw.Image(
+    pw.MemoryImage(_backgoundImage.buffer.asUint8List()),
+    fit: pw.BoxFit.cover,
+  );
+}
+
+class SvgBackgroundImage extends BackgroundImage {
+  late final String _backgroundImage;
+
+  @override
+  String get path => 'assets/cert_bg_min.svg';
+
+  @override
+  Future<void> loadImage() async {
+    _backgroundImage = await rootBundle.loadString(path);
+  }
+
+  @override
+  pw.Widget buildBackground() =>
+      pw.SvgImage(svg: _backgroundImage, fit: pw.BoxFit.cover);
+}
+
 class PdfGenerator {
-  Future<Uint8List> generatePdf() async {
-    // Load background image as Uint8List
-    final bgBytes = await rootBundle.load('assets/bg.jpg');
-    final bgImage = pw.MemoryImage(bgBytes.buffer.asUint8List());
+  Future<Uint8List> generatePdf(BackgroundImage bg) async {
+    await bg.loadImage();
 
     final pw.Document pdf = pw.Document()
       ..addPage(
         pw.Page(
           pageFormat: PdfPageFormat.a4.copyWith(
             width: 990,
-            height: 540,
+            height: 660,
             marginBottom: 0,
             marginTop: 0,
             marginLeft: 0,
@@ -22,9 +62,7 @@ class PdfGenerator {
           build: (pw.Context context) {
             return pw.Stack(
               children: [
-                pw.Positioned.fill(
-                  child: pw.Image(bgImage, fit: pw.BoxFit.cover),
-                ),
+                pw.Positioned.fill(child: bg.buildBackground()),
                 pw.Transform.scale(
                   scale: 2.0,
                   child: pw.Center(

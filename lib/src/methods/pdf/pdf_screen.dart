@@ -5,7 +5,9 @@ import 'package:image_export/src/common/export_certificate_mixin.dart';
 import 'package:image_export/src/methods/pdf/pdf_generator.dart';
 
 class PdfScreen extends StatelessWidget with ExportCertificateMixin {
-  const PdfScreen({super.key});
+  const PdfScreen({super.key, required this.bg});
+
+  final BackgroundImage bg;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class PdfScreen extends StatelessWidget with ExportCertificateMixin {
                 final stopwatch = Stopwatch()..start();
                 Timeline.startSync('Pdf');
                 final pdfGenerator = PdfGenerator();
-                final bytes = await pdfGenerator.generatePdf();
+                final bytes = await pdfGenerator.generatePdf(bg);
                 Timeline.finishSync();
                 stopwatch.stop();
                 debugPrint('Pdf: ${stopwatch.elapsedMilliseconds} ms');

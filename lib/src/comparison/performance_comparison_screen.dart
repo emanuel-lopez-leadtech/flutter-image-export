@@ -46,10 +46,17 @@ class _PerformanceComparisonScreenState
       },
     ),
     Algorithm(
-      name: 'PDF Export',
+      name: 'JPG PDF Export',
       color: Colors.red,
       run: (BuildContext context) async {
-        await PdfGenerator().generatePdf();
+        await PdfGenerator().generatePdf(JpgBackgroundImage());
+      },
+    ),
+    Algorithm(
+      name: 'SVG PDF Export',
+      color: Colors.yellow,
+      run: (BuildContext context) async {
+        await PdfGenerator().generatePdf(SvgBackgroundImage());
       },
     ),
   ];
